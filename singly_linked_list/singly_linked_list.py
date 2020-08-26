@@ -120,22 +120,25 @@ class LinkedList:
         # 0) Check that length > i. If not, return None
         if index >= self.length:
             return None
-        if self.length == 1 and index == 0:
-            target = self.head
-            self.head = None
-            self.tail = None
+            if self.length == 1 and index == 0:
+                target = self.head
+                self.head = None
+                self.tail = None
+                self.length = self.length - 1
+                return target.value
+            # Iterate through the loop i-1 times:
+            prev_node = self.head
+            for i in range(index - 1):
+                # This will get us to prev_node points to the node before the target node
+                prev_node = prev_node.next
+
+            target = prev_node.next
+            prev_node.next = target.next
+            target.next = None
+
             self.length = self.length - 1
+
             return target.value
-        # Iterate through the loop i-1 times:
-        prev_node = self.head
-        for i in range(index - 1):
-            # This will get us to prev_node points to the node before the target node
-            prev_node = prev_node.next
 
-        target = prev_node.next
-        prev_node.next = target.next
-        target.next = None
-
-        self.length = self.length - 1
-
-        return target.value
+            # node.value = node.next.value
+            # node.next = node.next.next
