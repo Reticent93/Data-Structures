@@ -95,12 +95,13 @@ class DoublyLinkedList:
         if self.head is None:
             return
         tmp = self.tail.value
-        tmp.prev.next = None
-        self.tail = self.tail.prev
+        del self.tail
         return tmp
 
-        #     node.value = node.next.value
-        #     node.next = node.next.next
+
+            # node.value = node.next.value
+            # node.next = node.next.next
+
 
     """
     Removes the input node from its current spot in the 
